@@ -43,8 +43,8 @@ $(eval $(call addlib,libsqlite))
 # Sources
 ################################################################################
 LIBSQLITE_VERSION = 3300100
-LIBSQLITE_BASENAME = sqlite-amalgamation-$(LIBSQLITE_VERSION)
-LIBSQLITE_URL = https://www.sqlite.org/2019/$(LIBSQLITE_BASENAME).zip
+LIBSQLITE_BASENAME = sqlite-split20k-$(LIBSQLITE_VERSION)
+LIBSQLITE_URL = https://github.com/ukflexos/sqlite-splitsrc/raw/main/generated/$(LIBSQLITE_BASENAME).zip
 LIBSQLITE_PATCHDIR = $(LIBSQLITE_BASE)/patches
 $(eval $(call fetch,libsqlite,$(LIBSQLITE_URL)))
 $(eval $(call patch,libsqlite,$(LIBSQLITE_PATCHDIR),$(LIBSQLITE_BASENAME)))
@@ -85,4 +85,4 @@ LIBSQLITE_SRCS-$(CONFIG_LIBSQLITE_MAIN_FUNCTION) += $(LIBSQLITE_BASE)/main.c|uni
 LIBSQLITE_SHELL_FLAGS-y += -Dmain=sqlite_main -Dwmain=sqlite_main
 
 LIBSQLITE_SRCS-y += $(LIBSQLITE_SRC)/shell.c
-LIBSQLITE_SRCS-y += $(LIBSQLITE_SRC)/sqlite3.c
+LIBSQLITE_SRCS-y += $(LIBSQLITE_SRC)/sqlite3-all.c
